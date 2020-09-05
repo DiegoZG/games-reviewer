@@ -3,7 +3,7 @@ import axios from 'axios'
 import Header from './Header'
 import styled from 'styled-components'
 import ReviewFrom from './ReviewForm'
-import AxiosHelper from '../../utils/Requests/AxiosHelper'
+
 
 const Wrapper = styled.div`
 margin-left: auto;
@@ -53,7 +53,7 @@ const Game = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        AxiosHelper()
+       
 
         const csrfToken = document.querySelector('[name=csrf-token]').content 
         axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
@@ -62,7 +62,10 @@ const Game = (props) => {
 
         axios.post('/api/v1/reviews', {review, game_id})
         .then( res => {
-            debugger
+            const included = [...game.included, res.data.data]
+            setGame({...game, included})
+            setReview({title: '', description: '', score: 0})
+
         })
         .catch( res => {} )
     }

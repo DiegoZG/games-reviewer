@@ -2,6 +2,7 @@ module Api
     module V1
         class GamesController < ApplicationController
             protect_from_forgery with: :null_session
+            skip_before_action :verify_authenticity_token
 
             def index
                 games = Game.all 
@@ -15,7 +16,6 @@ module Api
 
             def create 
                 game = Game.new(game_params)
-
                 if game.save
                     render json: GameSerializer.new(game).serialized_json
                 else
@@ -35,7 +35,6 @@ module Api
 
             def destroy
                 game = Game.find_by(slug: params[:slug])
-
                 if game.destroy
                     head :no_content
                 else

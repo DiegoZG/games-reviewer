@@ -34,6 +34,7 @@ const Games = () => {
      axios.get('/api/v1/games.json')
      .then( res => {
          setGames(res.data.data)
+         console.log(res)
      } )
      .catch( res => console.log(res) )
     }, [games.length])

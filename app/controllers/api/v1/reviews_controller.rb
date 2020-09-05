@@ -2,10 +2,10 @@ module Api
     module V1
         class ReviewsController < ApplicationController
             protect_from_forgery with: :null_session
+            skip_before_action :verify_authenticity_token
 
             def create
-                review = Review.new(review_params)
-
+                review = game.reviews.new(review_params)
                 if review.save
                     render json: ReviewSerializer.new(review).serialized_json
                 else
@@ -15,7 +15,6 @@ module Api
 
             def destroy
                 review = Review.find(params[:id])
-
                 if review.destroy
                     head :no_content
                 else
@@ -25,9 +24,9 @@ module Api
 
             private
 
-            # def game
-            #     @game ||= Game.find(params[:game_id])
-            # end
+            def game 
+                @game ||= Game.find(params[:game_id])
+            end
 
             def review_params
                 params.require(:review).permit(:title, :description, :score, :game_id)
