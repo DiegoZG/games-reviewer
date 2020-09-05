@@ -1,5 +1,8 @@
 import React, { Fragment} from 'react'
 import styled from 'styled-components'
+import Gray from './Stars/Gray'
+import Hover from './Stars/Hover'
+import Selected from './Stars/Selected'
 
 const RatingContainer = styled.div`
 text-align: center;
@@ -14,7 +17,7 @@ background: #fff;
 display: flex;
 justify-content: center;
 flex-direction: row-reverse;
-pisition: relative;
+position: relative;
 
 input {
     display: none;
@@ -24,7 +27,20 @@ label {
     cursor: pointer;
     width: 40px;
     height: 40px;
-    background-image: url();
+    background-image: url("data:image/svg+xml;charset=UTF-8,${Gray}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+}
+
+input:checked ~ label,
+input:checked ~ label ~ label {
+    background-image: url("data:image/svg+xml;charset=UTF-8,${Selected}");
+}
+
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label ~ hover ~ label {
+    background-image: url("data:image/svg+xml;charset=UTF-8,${Hover}");
 }
 `
 const RatingTitle = styled.div``
@@ -51,9 +67,9 @@ const ReviewForm = (props) => {
                 <div className="field">
                     <RatingContainer>
                     <div className="rating-title-text"> Rate This Game</div>
-                    <div className="rating-box">
+                    <RatingBox>
                     {ratingOptions}
-                    </div>
+                    </RatingBox>
                     </RatingContainer>
                 </div>
                 <button type="submit"> Submit your review</button>
