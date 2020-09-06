@@ -26,11 +26,13 @@ const Game = (props) => {
     return(
         <Card className={classes.root}>
         <CardActionArea>
+        <Link to={`/games/${props.attributes.slug}`}>
           <CardMedia
             className={classes.media}
             image={props.attributes.image_url}
             title="Contemplative Reptile"
           />
+          </Link>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {props.attributes.name}

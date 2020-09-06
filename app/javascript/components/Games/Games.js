@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const Home = styled.div`
 text-align: center;
-max-width: 1200px;
+max-width: 1400px;
 magin-left: auto;
 margin-right: auto;
 `
@@ -17,12 +17,12 @@ h1{
 `
 const SubHeader = styled.div`
 font-weight: 300;
-font-size: 22px;
+font-size: 26px;
 `
 const Grid = styled.div`
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-grid-gap: 20px;
+grid-gap: 30px;
 width: 100%;
 padding: 20px;
 `
