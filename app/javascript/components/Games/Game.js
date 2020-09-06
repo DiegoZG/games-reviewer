@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Rating from '../Rating/Rating'
 
 const useStyles = makeStyles({
     root: {
@@ -35,7 +36,7 @@ const Game = (props) => {
               {props.attributes.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.attributes.avg_score}
+              <Rating score={props.attributes.avg_score}/>
             </Typography>
           </CardContent>
         </CardActionArea>

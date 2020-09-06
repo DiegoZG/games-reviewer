@@ -3,6 +3,7 @@ import axios from 'axios'
 import Header from './Header'
 import styled from 'styled-components'
 import ReviewFrom from './ReviewForm'
+import Review from './Review'
 
 
 const Wrapper = styled.div`
@@ -65,11 +66,26 @@ const Game = (props) => {
             const included = [...game.included, res.data.data]
             setGame({...game, included})
             setReview({title: '', description: '', score: 0})
-
         })
         .catch( res => {} )
     }
-
+    
+    const setRating = ( score, e ) => {
+      e.preventDefault()
+      setReview({...review, score})
+    }
+    
+    let reviews
+    if (loaded && game.included){
+    reviews = game.included.map( (item, index) => {
+      return (
+        <Review 
+        key={index}
+        attributes={item.attributes}
+        />
+      )
+    })
+  }
     return(
         <Wrapper>
            
@@ -81,7 +97,7 @@ const Game = (props) => {
                        attributes={game.data.attributes}
                        reviews={game.included}
                      />
-                <div className="reviews"></div>   
+                     {reviews}   
                     </Main> 
                  </Column>
               <Column>
@@ -90,6 +106,7 @@ const Game = (props) => {
                 handleSubmit={handleSubmit}
                 attributes={game.data.attributes}
                 review={review}
+                setRating={setRating}
                 />
               </Column>
             </Fragment>
