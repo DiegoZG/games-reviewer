@@ -5,8 +5,9 @@ const Wrapper = styled.div`
 padding: 50px 100px 50px 0;
 font-size: 30px;
 img {
-    height: 50px;
-    width: 50px;
+    text-aling: center;
+    height: 100px;
+    width: 100px;
     border-radius: 100%;
     border: 1px solid rgba(0,0,0,0,1);
     margin-bottom: -8px;

@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import Game from './Game'
 import styled from 'styled-components'
+import SearchBar from './SearchBar'
 
 const Home = styled.div`
 text-align: center;
@@ -12,7 +13,8 @@ margin-right: auto;
 const Header = styled.div`
 padding: 100px 100px 10px 100px;
 h1{
-    font-size: 38px;
+    color: white;
+    font-size: 44px;
 }
 `
 const SubHeader = styled.div`
@@ -29,6 +31,7 @@ padding: 20px;
 
 const Games = () => {
     const [games, setGames] = useState([])
+    const [searchField, setsearchField] = useState('')
 
     useEffect((  ) => {
      axios.get('/api/v1/games.json')
@@ -39,7 +42,8 @@ const Games = () => {
      .catch( res => console.log(res) )
     }, [games.length])
 
-   const grid = games.map( game => {
+   const filteredGames = games.filter( game => game.attributes.name.toLowerCase().includes(searchField.toLowerCase()))
+   const grid = filteredGames.map( game => {
         return(
         <Game 
         key={game.attributes.name} 
@@ -48,12 +52,18 @@ const Games = () => {
         )
     })
 
+    function handleChange(e) {
+        setsearchField(e.target.value)
+        
+    }
+
     return(
          <Home>
             <Header>
-                <h1> Open Games</h1>
-                <SubHeader> Honest, Games Reviews  </SubHeader> 
+                <h1> Games </h1>
+                <SubHeader> </SubHeader> 
             </Header>
+            <SearchBar placeholder="Enter game name..." handleChange={handleChange}/>
         <Grid>
         {grid} 
         </Grid>

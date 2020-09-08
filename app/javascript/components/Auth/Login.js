@@ -1,7 +1,40 @@
 import React, { Component, useState }  from 'react'
 import { AuthConsumer } from '../AuthContext'
 import styled from 'styled-components'
+import './Login.css'
 
+
+
+// const Login = (props) => {
+//   const [user, setUser] = useState({ email: '', password: '', auth: false, loading: true })
+//   const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
+
+//   return(
+//     <div>
+//     <div className='bold-line'></div>
+// <div className='container'>
+//   <div className='window'>
+//     <div className='overlay'></div>
+//     <div className='content'>
+//       <div className='welcome'>Hello There!</div>
+//       <div className='subtitle'>We're almost done. Before using our services you need to create an account.</div>
+//       <div className='input-fields'>
+
+//         <input onChange={handleChange} type='email' placeholder='Email' className='input-line full-width'></input>
+//         <input onChange={handleChange} type='password' placeholder='Password' className='input-line full-width'></input>
+
+//       </div>
+//       <div className='spacing'>or continue with <span class='highlight'>Facebook</span></div>
+//       <div><button className='ghost-round full-width'>Create Account</button></div>
+//     </div>
+//   </div>
+// </div>
+// </div>
+//   )
+
+// }
+
+// export default Login 
 const LoginWrapper = styled.div``
 const FormWrapper = styled.div`
   margin-top:50px;

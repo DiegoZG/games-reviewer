@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 margin-left: auto;
 margin-right: auto;
 display: grid;
-grid-template-columns: repeat(2, 1fr)
+grid-template-columns: repeat(1, 1fr)
 `
 const Column = styled.div`
 background: #fff;
@@ -61,7 +61,7 @@ const Game = (props) => {
         
         const game_id = parseInt(game.data.id) 
 
-        axios.post('/api/v1/reviews', {review, game_id})
+        axios.post('/api/v1/reviews', {...review, game_id})
         .then( res => {
             const included = [...game.included, res.data.data]
             setGame({...game, included})

@@ -11,14 +11,20 @@ font-size: 15px;
 padding: 40px 0 10px 0;
 border: 1px solid #e6e6e6;
 background: #fff;
+width: 50%;
+margin: auto;
+;
+
 `
 const RatingBox = styled.div`
+text-align: center;
 background: #fff;
 display: flex;
 justify-content: center;
 flex-direction: row-reverse;
 position: relative;
 margin-top: 12px;
+
 
 input {
     display: none;
@@ -46,18 +52,21 @@ input:not(:checked) ~ label ~ hover ~ label {
 `
 const Field = styled.div`
 border-radius: 4px;
+text-align: center;
 
 input {
+    text-align: center;
     min-heigth: 50px;
     border-radius: 4px;
     border: 1px solid #e6e6e6;
     margin: 0 0 12px 0;
     padding: 12px;
-    width: 96%
+    width: 50%
 }
 
 textarea {
-    width: 100%;
+    text-align: center;
+    width: 50%;
     min-height: 80px;
     border-radius: 4px;
     border: 1px solid #e6e6e6;
@@ -66,9 +75,10 @@ textarea {
 }
 `
 const Wrapper = styled.div`
+text-align: center;
 background: #fff;
 padding: 20px;
-background: #000;
+background: #bc3e3e;
 height: 100vh;
 padding-top: 100px;
 `
@@ -81,7 +91,7 @@ font-size: 18px;
 cursor: pointer;
 trasition: ease-in-out 0.1s;
 border: 1px solid #fff;
-width: 100%;
+width: 50%;
 margin-top: 20px;
 
 &:hover {
@@ -123,6 +133,7 @@ const ReviewForm = (props) => {
                 <Field>
                     <input onChange={props.handleChange} value={props.review.description} type="text" name="description" placeholder="Review Description"/>
                 </Field>
+                <div >
                 <Field>
                     <RatingContainer>
                     <RatingTitle> Rate This Game</RatingTitle>
@@ -131,6 +142,7 @@ const ReviewForm = (props) => {
                     </RatingBox>
                     </RatingContainer>
                 </Field>
+                </div>
                 <SubmitBtn type="submit"> Submit your review</SubmitBtn>
 
             </form>

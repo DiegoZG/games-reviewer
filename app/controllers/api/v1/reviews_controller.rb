@@ -7,6 +7,7 @@ module Api
 
             def create
                 review = current_user.reviews.new(review_params)
+               
                 if review.save
                     render json: ReviewSerializer.new(review).serialized_json
                 else

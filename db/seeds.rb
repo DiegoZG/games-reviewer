@@ -21,6 +21,30 @@ games = Game.create([
     {
         name: "Super Smash Bros Ultimate",
         image_url: "https://i.pinimg.com/736x/09/df/cb/09dfcb70e736366ab356240285c2288d.jpg"
+    },
+    {
+        name: "Animal Crossing",
+        image_url: "https://s1.gaming-cdn.com/images/products/4809/orig/animal-crossing-new-horizons-switch-cover.jpg"
+    },
+    {
+        name: "Resident Evil 3",
+        image_url: "https://i.redd.it/47tma0dniw341.jpg"
+    },
+    {
+        name: "Uncharted 4",
+        image_url: "https://images-na.ssl-images-amazon.com/images/I/71hcX5qwKNL._SL1000_.jpg"
+    },
+    {
+        name: "Fall Guys",
+        image_url: "https://www.mobygames.com/images/covers/l/676144-fall-guys-ultimate-knockout-playstation-4-front-cover.png"
+    },
+    {
+        name: "Mario Kart 8",
+        image_url: "https://images-na.ssl-images-amazon.com/images/I/91KQmjDxj-L._SL1500_.jpg"
+    },
+    {
+        name: "The Legend Of Zelda Breath Of The Wild",
+        image_url: "https://s1.gaming-cdn.com/images/products/2616/orig/the-legend-of-zelda-breath-of-the-wild-switch-cover.jpg"
     }
 ])
 
