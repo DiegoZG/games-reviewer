@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration[6.0]
       t.string :description
       t.integer :score
       t.belongs_to :game, null: false, foreign_key: true
+      t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end

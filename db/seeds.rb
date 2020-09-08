@@ -24,17 +24,17 @@ games = Game.create([
     }
 ])
 
-reviews = Review.create([
-    {
-        title: 'Great game',
-        description: 'I had a great time',
-        score: 5,
-        game: games.first
-    },
-    {
-        title: 'Awful game',
-        description: 'I had a bad time',
-        score: 1,
-        game: games.first
-    }
-])
+# reviews = Review.create([
+#     {
+#         title: 'Great game',
+#         description: 'I had a great time',
+#         score: 5,
+#         game: games.first
+#     },
+#     {
+#         title: 'Awful game',
+#         description: 'I had a bad time',
+#         score: 1,
+#         game: games.first
+#     }
+# ])
