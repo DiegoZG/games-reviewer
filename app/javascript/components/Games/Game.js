@@ -49,7 +49,7 @@ const Game = (props) => {
           <Link to={`/games/${props.attributes.slug}`}> View Game </Link>
           </Button>
           <Button size="small" color="primary">
-            <Modal />
+            <Modal video={props.attributes.video}/>
           </Button>
           
         </CardActions>

@@ -22,7 +22,7 @@ class VideoModal extends Component {
                     <ModalVideo 
                     channel="youtube"
                     isOpen={this.state.isOpen}
-                    videoId="SrG36nQcmpw"
+                    videoId={this.props.video}
                     onClose={() => this.setState({ isOpen: false })} />
                     <Button onClick={this.openModal}> View Gameplay </Button>
                 </div>
