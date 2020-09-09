@@ -96,34 +96,53 @@ const Field = styled.div`
   width: 100%;
 `
 
-const Login = (props) => {
-  const [user, setUser] = useState({ email: '', password: '', auth: false, loading: true })
-  const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
+// const Login = (props) => {
+//   const [user, setUser] = useState({ email: '', password: '', auth: false, loading: true })
+//   const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
 
-  return (
-    <AuthConsumer>
-      { ({ isAuth, login }) => (
-        <LoginWrapper>
+//   return (
+//     <AuthConsumer>
+//       { ({ isAuth, login }) => (
+//         <form className="login">
+//         <input onChange={handleChange} type="email" value={user.email} placeholder="email" name="email"/>
+//         <input onChange={handleChange} type="password"value={user.password} placeholder="password" name="password"/>
+//         <button>Login</button>
+//       </form>
+      
+      
+//       )}
+//     </AuthConsumer>
+//   )
+// }
+
+// export default Login
+ const Login = (props) => {
+   const [user, setUser] = useState({ email: '', password: '', auth: false, loading: true })
+   const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
+
+   return (
+     <AuthConsumer>
+     { ({ isAuth, login }) => (
+         <LoginWrapper>
           <FormWrapper>
-            <FormContainer>
+             <FormContainer>
               <Form onSubmit={login.bind(this, user, props)}>
                 <h1>Log In</h1>
-                <Field>
-                  <label>Email</label>
-                  <Input onChange={handleChange} type="email" value={user.email} placeholder="email" name="email"/>
-                </Field>
-                <Field>
-                  <label>Password</label>
+                 <Field>
+                   <label>Email</label>
+                   <Input onChange={handleChange} type="email" value={user.email} placeholder="email" name="email"/>
+                 </Field>
+                 <Field>
+                   <label>Password</label>
                   <Input onChange={handleChange} type="password"value={user.password} placeholder="password" name="password"/>
                 </Field>
-                <LoginButton type="submit">Login</LoginButton>
+                 <LoginButton type="submit">Login</LoginButton>
               </Form>   
             </FormContainer>
-          </FormWrapper>
-        </LoginWrapper>
+           </FormWrapper>
+         </LoginWrapper>
       )}
     </AuthConsumer>
-  )
-}
-
-export default Login
+   )
+ }
+ export default Login 

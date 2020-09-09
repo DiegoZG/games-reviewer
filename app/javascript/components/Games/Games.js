@@ -3,6 +3,8 @@ import axios from 'axios'
 import Game from './Game'
 import styled from 'styled-components'
 import SearchBar from './SearchBar'
+import GameForm from './GameForm'
+import FilterBar from './FilterBar'
 
 const Home = styled.div`
 text-align: center;
@@ -32,17 +34,19 @@ padding: 20px;
 const Games = () => {
     const [games, setGames] = useState([])
     const [searchField, setsearchField] = useState('')
+    const [allFilteredGames, setallFilteredGames] = useState([])
 
     useEffect((  ) => {
      axios.get('/api/v1/games.json')
      .then( res => {
          setGames(res.data.data)
+         setallFilteredGames(res.data.data)
          console.log(res)
      } )
      .catch( res => console.log(res) )
-    }, [games.length])
-
-   const filteredGames = games.filter( game => game.attributes.name.toLowerCase().includes(searchField.toLowerCase()))
+    }, [])
+  
+   const filteredGames = allFilteredGames.filter( game => game.attributes.name.toLowerCase().includes(searchField.toLowerCase()))
    const grid = filteredGames.map( game => {
         return(
         <Game 
@@ -57,8 +61,55 @@ const Games = () => {
         
     }
 
+    // const addGame = (gameData) => {
+    //     axios.post('/api/v1/games', {...gameData, game_id})
+    //     .then( res => {
+    //         const included = [...games, res.data.data]
+    //         setGames({...games, included})
+    //     })
+    //     debugger
+    
+    //     fetch("http://localhost:3000/games", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify({
+    //         name: gameData.name,
+    //         image_url: gameData.image_url,
+    //         video: gameData.video
+    //       })
+    //     }
+
+    const filterGames = (e) => {
+        
+        if(e.target.value === "Play Station 4"){
+            setallFilteredGames(games.filter(game => { return game.attributes.platform === "Play Station 4"}))
+        
+        }else if(e.target.value === "Nintendo Switch"){
+            setallFilteredGames(games.filter(game => {return game.attributes.platform === "Nintendo Switch"}))
+        }else {
+            setallFilteredGames(games)
+        }
+      }
+    
+      const sortGames = (e) => {
+    
+        let key = e.target.value
+        let sortedArray = games.sort((a,b) => a[key] < b[key] ? -1 : 1)
+    
+        // debugger
+        setGames(sortedArray)
+       
+      }
+
     return(
          <Home>
+             {/* <GameForm addGame={addGame}/> */}
+             <FilterBar 
+             filterGames = {filterGames}
+             sortGames = {sortGames}
+             />
             <Header>
                 <h1> Games </h1>
                 <SubHeader> </SubHeader> 
@@ -71,5 +122,6 @@ const Games = () => {
         
     )
 }
+
 
 export default Games

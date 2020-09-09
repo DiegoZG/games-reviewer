@@ -11,7 +11,8 @@ export default function NavBar() {
 		    <h1 className="logo"><Link to="/">DiwoHub</Link></h1>
               <ul className="main-nav">
                  <li><Link to="/">Games</Link></li>
-                 <li> <Link to="/login">Login</Link> </li>  
+                 <li> <Link to="/login">Login</Link> </li> 
+                 <li> <Link to="/register"> Sign Up</Link></li> 
          
               </ul>
 	      </header>

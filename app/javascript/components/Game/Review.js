@@ -12,6 +12,22 @@ const RatingContainer = styled.div`
 display: flex;
 flex-direction: row;
 `
+const Options = styled.div`
+position:absolute;
+right :15px;
+top: 15px;
+display: flex;
+flex-direction: columns;
+`
+
+const Icon = styled.button`
+  box-shadow: none;
+  border-radius: 4px;
+  margin: 0 4px;
+  i {
+    font-size: 18px;
+  }
+`
 
 const Title = styled.div`
 padding: 20px 0 0 0;
@@ -24,16 +40,20 @@ font-size: 14px;
 `
 
 const Review = ( props ) => {
-    const {score, title, description } = props.attributes
+    // const {score, title, description, handleDestroy } = props.attributes
     return(
         <Card>
             <RatingContainer>
             <Rating 
-            score={score}
+            score={props.attributes.score}
             />
             </RatingContainer>
-            <Title>{title}</Title>
-            <Description> {description}</Description>
+            <Title>{props.attributes.title}</Title>
+            <Description> {props.attributes.description}</Description>
+            
+                <button onClick={(e) => props.handleDestroy(e, review.id)} > destroy </button>
+                {/* <Icon> <i className="fa fa-pencil"></i></Icon> */}
+              
         </Card>
     )
 }

@@ -50,9 +50,20 @@ const Game = (props) => {
       console.log('review:', review)
     }
 
-
+    const handleDestroy = (e, review) => {
+       debugger
+      e.preventDefault()
+      axios.delete(`api/v1/reviews/1`)
+      .then( (data) => {
+        console.log(data)
+  
+        setGame({ ...game, reviews })
+      })
+      .catch( data => console.log('Error', data) )
+    }
 
     const handleSubmit = (e) => {
+       
         e.preventDefault()
        
 
@@ -70,6 +81,9 @@ const Game = (props) => {
         .catch( res => {} )
     }
     
+
+
+
     const setRating = ( score, e ) => {
       e.preventDefault()
       setReview({...review, score})
@@ -82,10 +96,14 @@ const Game = (props) => {
         <Review 
         key={index}
         attributes={item.attributes}
+        handleDestroy={handleDestroy}
         />
       )
     })
   }
+
+
+
     return(
         <Wrapper>
            
@@ -96,6 +114,7 @@ const Game = (props) => {
                      <Header
                        attributes={game.data.attributes}
                        reviews={game.included}
+                       
                      />
                      {reviews}   
                     </Main> 

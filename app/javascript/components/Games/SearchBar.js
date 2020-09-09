@@ -6,7 +6,7 @@ const SearchBar = (props) => {
         <form className="form" action="">
 
 <input onChange={(e) => props.handleChange(e)} className="searchInput"type="text" name="" placeholder="Search Game"/>
-<i class="fa fa-search"></i>
+<i className="fa fa-search"></i>
 </form>
     )
 }

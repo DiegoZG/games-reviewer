@@ -46,7 +46,7 @@ const Game = (props) => {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-          <Link to={`/games/${props.attributes.slug}`}> View Game </Link>
+          <Link to={`/games/${props.attributes.slug}`}> Rate Game </Link>
           </Button>
           <Button size="small" color="primary">
             <Modal video={props.attributes.video}/>
