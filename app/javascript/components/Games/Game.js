@@ -9,6 +9,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Rating from '../Rating/Rating'
+import Modal from './VideoModal'
+
 
 const useStyles = makeStyles({
     root: {
@@ -45,6 +47,9 @@ const Game = (props) => {
         <CardActions>
           <Button size="small" color="primary">
           <Link to={`/games/${props.attributes.slug}`}> View Game </Link>
+          </Button>
+          <Button size="small" color="primary">
+            <Modal />
           </Button>
           
         </CardActions>
