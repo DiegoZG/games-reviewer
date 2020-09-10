@@ -25,6 +25,7 @@ class VideoModal extends Component {
                     videoId={this.props.video}
                     onClose={() => this.setState({ isOpen: false })} />
                     <Button onClick={this.openModal}> View Gameplay </Button>
+                    
                 </div>
             </div>
         )

@@ -5,12 +5,16 @@ import styled from 'styled-components'
 import SearchBar from './SearchBar'
 import GameForm from './GameForm'
 import FilterBar from './FilterBar'
+import WishList from './WishList'
 
 const Home = styled.div`
 text-align: center;
 max-width: 1400px;
 magin-left: auto;
 margin-right: auto;
+display: flex;
+flex-flow: column nowrap;
+justify-content: space-between;
 `
 const Header = styled.div`
 padding: 100px 100px 10px 100px;
@@ -35,6 +39,7 @@ const Games = () => {
     const [games, setGames] = useState([])
     const [searchField, setsearchField] = useState('')
     const [allFilteredGames, setallFilteredGames] = useState([])
+    const [favoriteGames, setfavoriteGames] = useState([])
 
     useEffect((  ) => {
      axios.get('/api/v1/games.json')
@@ -45,6 +50,7 @@ const Games = () => {
      } )
      .catch( res => console.log(res) )
     }, [])
+
   
    const filteredGames = allFilteredGames.filter( game => game.attributes.name.toLowerCase().includes(searchField.toLowerCase()))
    const grid = filteredGames.map( game => {
@@ -52,6 +58,8 @@ const Games = () => {
         <Game 
         key={game.attributes.name} 
         attributes={game.attributes}
+        description={game.attributes.description}
+
         />
         )
     })
@@ -93,22 +101,14 @@ const Games = () => {
         }
       }
     
-      const sortGames = (e) => {
-    
-        let key = e.target.value
-        let sortedArray = games.sort((a,b) => a[key] < b[key] ? -1 : 1)
-    
-        // debugger
-        setGames(sortedArray)
-       
-      }
+     
 
     return(
          <Home>
              {/* <GameForm addGame={addGame}/> */}
              <FilterBar 
              filterGames = {filterGames}
-             sortGames = {sortGames}
+             
              />
             <Header>
                 <h1> Games </h1>

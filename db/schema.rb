@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_161442) do
+ActiveRecord::Schema.define(version: 2020_09_09_233121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_161442) do
     t.integer "average_score", default: 0
     t.string "video"
     t.string "platform"
+    t.boolean "favorite"
+    t.text "description"
   end
 
   create_table "reviews", force: :cascade do |t|

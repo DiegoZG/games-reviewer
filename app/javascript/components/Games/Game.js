@@ -1,62 +1,186 @@
 import React from 'react'
 import { BrowserRouter as Router, Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import clsx from 'clsx';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Rating from '../Rating/Rating'
 import Modal from './VideoModal'
+import Button from '@material-ui/core/Button';
+// import Card from '@material-ui/core/Card';
+// import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Button from '@material-ui/core/Button';
+// import Typography from '@material-ui/core/Typography';
+// import Rating from '../Rating/Rating'
+// import Modal from './VideoModal'
+// import Collapse from '@material-ui/core/Collapse';
+
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// import ShareIcon from '@material-ui/icons/Share';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import { red } from '@material-ui/core/colors';
+// import IconButton from '@material-ui/core/IconButton';
 
 
-const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 400,
-    },
-  });
+// const useStyles = makeStyles({
+//     root: {
+//       maxWidth: 345,
+//     },
+//     media: {
+//       height: 400,
+//     },
+//   });
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 400,
+    paddingTop: '56.25%', // 16:9
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+}));
   
-
 const Game = (props) => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
 
-    return(
-        <Card className={classes.root}>
-        <CardActionArea>
-        <Link to={`/games/${props.attributes.slug}`}>
-          <CardMedia
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+  return (
+    <Card className={classes.root}>
+         <CardActionArea>
+         <Link to={`/games/${props.attributes.slug}`}>
+           <CardMedia
             className={classes.media}
             image={props.attributes.image_url}
-            title="Contemplative Reptile"
-          />
-          </Link>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.attributes.name}
+             title="Contemplative Reptile"
+           />
+           </Link>
+           <CardContent>
+             <Typography gutterBottom variant="h5" component="h2">
+               {props.attributes.name}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <Rating score={props.attributes.avg_score}/>
-            </Typography>
+           
+             <Typography variant="body2" color="textSecondary" component="p">
+               <Rating score={props.attributes.avg_score}/>
+             </Typography>
+           </CardContent>
+         </CardActionArea>
+         <CardActions>
+           <Button size="small" color="primary">
+           <Link to={`/games/${props.attributes.slug}`}> Rate Game </Link>
+           </Button>
+           <Button size="small" color="primary">
+             <Modal 
+             video={props.attributes.video}
+             />
+           </Button>
+         </CardActions>
+         <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography paragraph>
+            {props.description}
+          </Typography>
           </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-          <Link to={`/games/${props.attributes.slug}`}> Rate Game </Link>
-          </Button>
-          <Button size="small" color="primary">
-            <Modal video={props.attributes.video}/>
-          </Button>
-          
-        </CardActions>
-      </Card>
-    );
+          </Collapse>
+       </Card>
+  );
 }
-    export default Game
+
+export default Game
+
+// const Game = (props) => {
+//     const classes = useStyles();
+//     const [expanded, setExpanded] = React.useState(false);
+//     const handleExpandClick = () => {
+//       setExpanded(!expanded);
+//     };
+
+//     return(
+//         <Card className={classes.root}>
+//         <CardActionArea>
+//         <Link to={`/games/${props.attributes.slug}`}>
+//           <CardMedia
+//             className={classes.media}
+//             image={props.attributes.image_url}
+//             title="Contemplative Reptile"
+//           />
+//           </Link>
+//           <CardContent>
+//             <Typography gutterBottom variant="h5" component="h2">
+//               {props.attributes.name}
+//             </Typography>
+           
+//             <Typography variant="body2" color="textSecondary" component="p">
+//               <Rating score={props.attributes.avg_score}/>
+//             </Typography>
+//           </CardContent>
+//         </CardActionArea>
+//         <CardActions>
+//           <Button size="small" color="primary">
+//           <Link to={`/games/${props.attributes.slug}`}> Rate Game </Link>
+//           </Button>
+//           <Button size="small" color="primary">
+//             <Modal 
+//             video={props.attributes.video}
+//             />
+             
+//           </Button>
+         
+              
+//         </CardActions>
+        
+//         <CardActionArea>
+//               <Typography paragraph>
+//               {props.description}
+//               </Typography>
+//             </CardActionArea>
+        
+//       </Card>
+//     );
+// }
+//     export default Game
 
 
 

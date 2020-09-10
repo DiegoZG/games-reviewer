@@ -50,17 +50,23 @@ const Game = (props) => {
       console.log('review:', review)
     }
 
-    const handleDestroy = (e, review) => {
-       debugger
+    const handleDestroy = (e, id) => {
       e.preventDefault()
-      axios.delete(`api/v1/reviews/1`)
+      axios.delete(`http://localhost:3000/api/v1/reviews/${id}`)
       .then( (data) => {
         console.log(data)
-  
-        setGame({ ...game, reviews })
+        
+        setGame({...game, included: [...game.included.filter( r => { return r.id != id})]})
+        
       })
       .catch( data => console.log('Error', data) )
     }
+
+    // const handleEdit = (e, id) => {
+    //   e.preventDefault()
+    //   axios.patch(`http://localhost:3000/api/v1/reviews/${id}`)
+    //   .then( (data))
+    // }
 
     const handleSubmit = (e) => {
        
@@ -97,6 +103,7 @@ const Game = (props) => {
         key={index}
         attributes={item.attributes}
         handleDestroy={handleDestroy}
+        id={item.id}
         />
       )
     })

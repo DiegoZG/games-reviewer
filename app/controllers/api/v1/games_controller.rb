@@ -45,7 +45,7 @@ module Api
             private 
 
             def game_params
-                params.require(:game).permit(:name, :image_url, :video, :platform)
+                params.require(:game).permit(:name, :image_url, :video, :platform, :description, :favorite)
             end
 
             def options

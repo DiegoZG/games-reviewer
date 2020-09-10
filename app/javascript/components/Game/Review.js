@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Rating from '../Rating/Rating'
+import { Button } from 'semantic-ui-react'
+
+
 
 const Card = styled.div`
 border: 1px solid rgba(0,0,0,0.1);
@@ -46,13 +49,21 @@ const Review = ( props ) => {
             <RatingContainer>
             <Rating 
             score={props.attributes.score}
-            />
+            /> {props.attributes.email}
+
             </RatingContainer>
             <Title>{props.attributes.title}</Title>
             <Description> {props.attributes.description}</Description>
             
-                <button onClick={(e) => props.handleDestroy(e, review.id)} > destroy </button>
+                
                 {/* <Icon> <i className="fa fa-pencil"></i></Icon> */}
+                <Button variant="contained" color="primary" onClick={(e) => props.handleDestroy(e, props.id)}>
+                Delete
+               </Button>
+               <Button content='Primary' primary />
+               {/* <Button variant="contained" color="primary" onClick={(e) => props.handleDestroy(e, props.id)}>
+                Edit
+               </Button> */}
               
         </Card>
     )
